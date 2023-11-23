@@ -287,7 +287,9 @@ SELECT professores.nome, cursos.titulo FROM professores INNER JOIN cursos ON alu
 ### 8) Faça uma consulta que mostre o nome dos alunos, o título dos cursos que fazem, e o professor de cada curso.
 ```sql
 
-SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alunos LEFT JOIN cursos ON alunos.curso_id = cursos.id LEFT JOIN professores ON professores.curso_id = cursos.id;
+SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" 
+FROM alunos LEFT JOIN cursos ON alunos.curso_id = cursos.id 
+LEFT JOIN professores ON professores.curso_id = cursos.id;
 
 -- Explicação
 
@@ -303,9 +305,14 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 <!-- _________________________ -->
 ### 9) Faça uma consulta que mostre a quantidade de alunos que cada curso possui. Classifique os resultados em ordem descrecente de acordo com a quantidade de alunos.
 ```sql
--- 13ª Digitação (SQL para criar a consulta acima)
 
-SELECT cursos.titulo AS "Matéria", COUNT(alunos.curso_id) AS "QTD Alunos" FROM alunos INNER JOIN cursos ON alunos.curso_id = cursos.id GROUP BY Matéria ORDER BY COUNT(alunos.curso_id) DESC;
+-- 13ª Digitação (SQL para criar a consulta acima)
+SELECT cursos.titulo AS "Matéria", 
+COUNT(alunos.curso_id) AS "QTD Alunos" 
+FROM alunos INNER JOIN cursos 
+ON alunos.curso_id = cursos.id 
+GROUP BY Matéria 
+ORDER BY COUNT(alunos.curso_id) DESC;
 
 ```
 ![Relatório 9](resultados_alunos/relatorio9.jpg)
@@ -314,7 +321,14 @@ SELECT cursos.titulo AS "Matéria", COUNT(alunos.curso_id) AS "QTD Alunos" FROM 
 ### 10) Faça uma consulta que mostre o nome dos alunos, suas notas, médias, e o título dos cursos que fazem. Devem ser considerados somente os alunos de Front-End e Back-End. Mostre classificados pelo nome do aluno.
 ```sql
 
-SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_nota) / 2), 2) AS "Média das notas", cursos.titulo AS titulo from alunos INNER JOIN cursos ON alunos.curso_id = cursos.id WHERE curso_id IN(1,2) GROUP BY nome ORDER BY titulo;
+SELECT alunos.nome, primeira_nota, segunda_nota, 
+ROUND(AVG((primeira_nota + segunda_nota) / 2), 2) AS "Média das notas", 
+cursos.titulo AS titulo from alunos 
+INNER JOIN cursos 
+ON alunos.curso_id = cursos.id 
+WHERE curso_id IN(1,2) 
+GROUP BY nome 
+ORDER BY titulo;
 
 ```
 ![Relatório 10](resultados_alunos/relatorio10.jpg)
@@ -324,6 +338,11 @@ SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segu
 ```sql
 
 -- 15ª Digitação (SQL para criar a consulta acima)
+UPDATE cursos
+SET titulo = 'AdobeXD',
+carga_horaria = 15
+WHERE id = 4;
+
 
 ```
 ![Relatório 11](resultados_alunos/relatorio11.jpg)
@@ -345,6 +364,9 @@ DELETE FROM alunos WHERE nome = 'Mário Calore' AND curso_id = 3;
 ```sql
 
 -- 17ª Digitação (SQL para criar a consulta acima)
+SELECT alunos.nome, cursos.titulo AS titulo from alunos INNER JOIN cursos
+ON alunos.curso_id = cursos.id
+GROUP BY nome ORDER BY nome;
 
 ```
 ![Relatório 13](resultados_alunos/relatorio13.jpg)
